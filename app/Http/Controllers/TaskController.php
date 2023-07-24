@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -13,7 +14,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        return Task::all();
     }
 
     /**
@@ -24,7 +25,9 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $task = Task::create($request->all());
+        
+        return "Task created successfully!)";
     }
 
     /**
@@ -35,7 +38,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        return Task::findOrFail($id);
     }
 
     /**
@@ -47,7 +50,9 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        Task::findOrfail($id)->update($request->all());
+
+        return "task updated successfuly";
     }
 
     /**
@@ -58,6 +63,8 @@ class TaskController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Task::destroy($id);
+
+        return "task deleted successfuly!";
     }
 }

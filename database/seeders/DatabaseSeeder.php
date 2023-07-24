@@ -21,29 +21,29 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         // User::create([
-        //     'name' => 'Selahadin',
-        //     'email' => 'admin@example.com',
+        //     'name' => 'mubarek',
+        //     'email' => 'manager@example.com',
         //     'password' => 'password',
-        //     'role_id' => 1,
+        //     'role_id' => 3,
         // ]);
 
-        // Task::create([
-        //     'title'=>'Task 1',
-        //     'description'=>'Task 1 description',
-        //     'duedate'=>date('y-m-d'),
-        //     'status'=>'0',
-        //     'user_id'=>2,
-        // ]);
+        Task::create([
+            'title'=>'Task 3',
+            'description'=>'Task 1 description',
+            'duedate'=>date('y-m-d'),
+            'status'=>'0',
+            'user_id'=>5,
+        ]);
 
         // Role::create([
-        //     'name'=>'Admin',
-        //     'description'=>'Administrator'
+        //     'name'=>'Manager',
+        //     'description'=>'Project and Task Manager'
         // ]);
 
-        // Permission::create([
-        //     'name'=>'All',
-        //     'description'=>'All permissions',
-        // ]);
+        Permission::create([
+            'name'=>'Submit_task',
+            'description'=>'Able to submit tasks',
+        ]);
 
     }
 }
