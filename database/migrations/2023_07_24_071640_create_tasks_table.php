@@ -15,7 +15,17 @@ return new class extends Migration
     {
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description');
+            $table->date('duedate');
+            $table->string('status');
             $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+
+            $table->foreign('user_id')  // Define foreign key constraint
+            ->references('id')      // Reference the 'id' column in the 'users' table
+            ->on('users')           // Referencing the 'users' table
+            ->onDelete('cascade');
         });
     }
 
