@@ -25,9 +25,41 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = User::create($request->all());
+        $formField = $request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'password'=>'required',
+            'role_id'=>'required',
+        ]);
+        
+        $formField['password'] = bcrypt($formField['password']);
+        
+        User::create($formField);
 
-        return `user successfully created ${$user}`;
+        return `user successfully created`;
+    }
+
+    public function logout()
+    {
+        auth()->logout();
+
+        return "logged out";
+    }
+
+    public function login(Request $request)
+    {
+        $formField = $request->validate([
+            'email'=>'required',
+            'password'=>'required',
+        ]);
+
+        if(auth()->attempt($formField)){
+            $request->session()->regenerate();
+
+            return 'successfully logged in';
+        }
+        
+        return 'invalid username or password';
     }
 
     /**
